@@ -31,9 +31,11 @@ next-env.d.ts
 *.pem
 secrets/
 
-# ===== Uploads (使用者上傳圖片不進 git) =====
-uploads/
-backend/uploads/
+# ===== Uploads (使用者上傳圖片不進 git，但保留資料夾) =====
+uploads/*
+!uploads/.gitkeep
+backend/uploads/*
+!backend/uploads/.gitkeep
 backend/static/uploads/
 frontend/public/uploads/
 
