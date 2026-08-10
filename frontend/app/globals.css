@@ -31,4 +31,53 @@
   .blob {
     @apply pointer-events-none absolute -z-10 rounded-full opacity-40 blur-3xl;
   }
+
+  /* 棋盤點點圖樣，用在 bento 大格的背景 */
+  .dot-grid {
+    background-image: radial-gradient(
+      circle,
+      rgba(45, 42, 74, 0.12) 1.4px,
+      transparent 1.5px
+    );
+    background-size: 22px 22px;
+  }
+
+  /* 細點，給 hero 背景 */
+  .dot-grid-soft {
+    background-image: radial-gradient(
+      circle,
+      rgba(45, 42, 74, 0.07) 1px,
+      transparent 1.2px
+    );
+    background-size: 18px 18px;
+  }
+
+  /* 9 宮格 Bento 主容器 */
+  .bento {
+    @apply grid grid-cols-2 gap-4 md:grid-cols-12 md:gap-5;
+  }
+
+  /* Bento 單格通用樣式（陰影 + 邊角 + hover） */
+  .bento-cell {
+    @apply relative overflow-hidden rounded-[1.75rem] p-5 shadow-pop transition-all duration-300 md:rounded-[2rem] md:p-6;
+  }
+
+  .bento-cell-hover {
+    @apply hover:-translate-y-1 hover:rotate-[-0.5deg] hover:shadow-pop-lg;
+  }
+
+  /* 貼紙：四周淡陰影 + 微旋轉 */
+  .sticker {
+    filter: drop-shadow(0 4px 0 rgba(45, 42, 74, 0.18));
+  }
+
+  /* 章節間的波浪分隔線（純 CSS） */
+  .wave-top {
+    --wave: #fff8e1;
+    background:
+      radial-gradient(circle at 12px -10px, var(--wave) 14px, transparent 15px)
+        repeat-x;
+    background-size: 24px 18px;
+    background-position: top center;
+  }
 }

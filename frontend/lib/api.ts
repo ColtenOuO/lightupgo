@@ -2,16 +2,19 @@
  * FastAPI client。
  *
  * - Server Component / SSR 用 INTERNAL_API_URL 走容器內網路（http://backend:8000）
- * - 瀏覽器與圖片 URL 永遠用 NEXT_PUBLIC_API_URL（對外網址）
+ * - 瀏覽器與圖片 URL：預設「相對路徑」，由 Next.js rewrites 代理到 backend。
+ *   這讓網站不論用 localhost / LAN IP / 正式網域開都行，
+ *   除非有 NEXT_PUBLIC_API_URL 明確指定外部網址。
  */
 
-const PUBLIC_API_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL ?? "";
 
 function getApiBaseUrl(): string {
   if (typeof window === "undefined") {
-    return process.env.INTERNAL_API_URL || PUBLIC_API_URL;
+    // SSR：走容器內網路
+    return process.env.INTERNAL_API_URL || PUBLIC_API_URL || "http://backend:8000";
   }
+  // 瀏覽器端：預設用相對路徑（透過 Next rewrites）
   return PUBLIC_API_URL;
 }
 
@@ -67,7 +70,10 @@ export async function apiSend<T>(
 }
 
 /**
- * 把 API 回傳的圖片相對網址（/uploads/...）補成完整網址，瀏覽器才載得到。
+ * 把 API 回傳的圖片相對網址（/uploads/...）展開成瀏覽器能載入的網址。
+ *
+ * 預設行為：保持相對路徑，由 Next.js rewrites 反向代理到 backend。
+ * 若有 NEXT_PUBLIC_API_URL（外部網域）則前綴上去。
  */
 export function resolveImageUrl(url: string | null | undefined): string | null {
   if (!url) return null;

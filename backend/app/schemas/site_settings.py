@@ -11,6 +11,7 @@ class SiteSettingsBase(BaseModel):
     phone: str | None = None
     address: str | None = None
     business_hours: str | None = None
+    map_url: str | None = None
 
     register_form_url: str | None = None
     register_form_note: str | None = None
@@ -31,6 +32,7 @@ class SiteSettingsUpdate(BaseModel):
     phone: str | None = None
     address: str | None = None
     business_hours: str | None = None
+    map_url: str | None = None
     register_form_url: str | None = None
     register_form_note: str | None = None
     meta_description: str | None = None

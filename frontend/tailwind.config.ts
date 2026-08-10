@@ -65,6 +65,16 @@ const config: Config = {
           900: "#173B57",
           DEFAULT: "#74C0FC",
         },
+        // 點綴：泡泡紫（給小朋友頁、貼紙）
+        grape: {
+          100: "#EFE3FF",
+          200: "#DCC4FF",
+          300: "#C6A4FB",
+          400: "#B084F5",
+          500: "#9A66EE",
+          600: "#7E4DD8",
+          DEFAULT: "#B084F5",
+        },
         // 背景：米白
         cream: {
           50: "#FFFEF9",
@@ -92,8 +102,12 @@ const config: Config = {
       },
       boxShadow: {
         pop: "0 8px 0 0 rgba(45, 42, 74, 0.12)",
+        "pop-sm": "0 4px 0 0 rgba(45, 42, 74, 0.10)",
+        "pop-lg": "0 12px 0 0 rgba(45, 42, 74, 0.14)",
         "pop-coral": "0 8px 0 0 rgba(255, 107, 107, 0.35)",
         "pop-sun": "0 8px 0 0 rgba(229, 187, 26, 0.35)",
+        "pop-mint": "0 8px 0 0 rgba(46, 175, 166, 0.30)",
+        "pop-grape": "0 8px 0 0 rgba(154, 102, 238, 0.30)",
       },
       keyframes: {
         bounceSoft: {
@@ -101,13 +115,34 @@ const config: Config = {
           "50%": { transform: "translateY(-6px)" },
         },
         wiggle: {
-          "0%, 100%": { transform: "rotate(-2deg)" },
-          "50%": { transform: "rotate(2deg)" },
+          "0%, 100%": { transform: "rotate(-3deg)" },
+          "50%": { transform: "rotate(3deg)" },
+        },
+        pop: {
+          "0%": { transform: "scale(0.6)", opacity: "0" },
+          "70%": { transform: "scale(1.08)", opacity: "1" },
+          "100%": { transform: "scale(1)", opacity: "1" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0) rotate(-2deg)" },
+          "50%": { transform: "translateY(-10px) rotate(2deg)" },
+        },
+        spinSlow: {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+        sway: {
+          "0%, 100%": { transform: "rotate(-1.5deg)" },
+          "50%": { transform: "rotate(1.5deg)" },
         },
       },
       animation: {
         "bounce-soft": "bounceSoft 2.4s ease-in-out infinite",
         wiggle: "wiggle 1.6s ease-in-out infinite",
+        pop: "pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both",
+        float: "float 4s ease-in-out infinite",
+        "spin-slow": "spinSlow 18s linear infinite",
+        sway: "sway 3s ease-in-out infinite",
       },
     },
   },

@@ -40,9 +40,13 @@ services:
     depends_on:
       - backend
     ports:
-      - "3000:3000"
+      # 主機 8080 → 容器內 Next.js 3000；容器內保持 3000 是為了不動 Dockerfile / package.json
+      - "8080:3000"
     environment:
-      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000}
+      # 預設留空，瀏覽器走相對路徑 → 由 Next.js rewrites 代理到 backend；
+      # 若要部署到外部網域，可在 .env 設成正式 API 網址（例如 https://api.lightupgo.win）。
+      # 注意：用 `-` 而不是 `:-`，這樣空字串會被保留（`:-` 會把空字串視為未設定）。
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL-}
       INTERNAL_API_URL: http://backend:8000
     volumes:
       - ./frontend:/app

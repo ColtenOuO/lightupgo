@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Any
 
 from pydantic import BaseModel, Field
 
@@ -11,6 +12,7 @@ class TeacherBase(BaseModel):
     bio: str | None = None
     avatar_url: str | None = None
     achievements: list[str] = Field(default_factory=list)
+    extras: dict[str, Any] = Field(default_factory=dict)
     order: int = 0
     visible: bool = True
 
@@ -27,6 +29,7 @@ class TeacherUpdate(BaseModel):
     bio: str | None = None
     avatar_url: str | None = None
     achievements: list[str] | None = None
+    extras: dict[str, Any] | None = None
     order: int | None = None
     visible: bool | None = None
 

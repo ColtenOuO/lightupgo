@@ -35,6 +35,23 @@ export type Course = {
   updated_at: string;
 };
 
+export type TeacherExtras = {
+  online_rank?: string;
+  taiwan_amateur_ranking?: number;
+  education?: { university?: string; department?: string };
+  contact?: {
+    facebook?: string;
+    line?: string;
+    email?: string;
+    phone?: string;
+  };
+  teaching_philosophy?: string[];
+  teaching_experience?: { year: string; organization: string; role?: string }[];
+  competition_awards?: { year: string | number; note?: string; awards: string[] }[];
+  other_experience?: { year: string | number; event: string; role?: string }[];
+  [key: string]: unknown;
+};
+
 export type Teacher = {
   id: string;
   slug: string;
@@ -44,6 +61,7 @@ export type Teacher = {
   bio: string | null;
   avatar_url: string | null;
   achievements: string[];
+  extras: TeacherExtras;
   order: number;
   visible: boolean;
   created_at: string;
@@ -78,6 +96,22 @@ export type BlogPost = {
   updated_at: string;
 };
 
+export type Announcement = {
+  id: string;
+  title: string;
+  body: string | null;
+  tag: string | null;
+  link_url: string | null;
+  link_text: string | null;
+  pinned: boolean;
+  published: boolean;
+  published_at: string | null;
+  expires_at: string | null;
+  order: number;
+  created_at: string;
+  updated_at: string;
+};
+
 export type SiteSettings = {
   site_name: string;
   tagline: string;
@@ -85,6 +119,7 @@ export type SiteSettings = {
   phone: string | null;
   address: string | null;
   business_hours: string | null;
+  map_url: string | null;
   register_form_url: string | null;
   register_form_note: string | null;
   meta_description: string | null;

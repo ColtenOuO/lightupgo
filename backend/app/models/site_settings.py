@@ -22,6 +22,11 @@ class SiteSettings(Document):
     phone: str | None = None
     address: str | None = None
     business_hours: str | None = None
+    # Google Maps 分享連結（share.google / maps.app.goo.gl / maps.google.com 都可）。
+    # 前台會做兩件事：
+    # 1. 「在 Google Maps 開啟」按鈕直接用這個 URL
+    # 2. /location 頁的內嵌地圖用 address 當 search query（不需要 API key）
+    map_url: str | None = None
 
     register_form_url: str | None = None
     register_form_note: str | None = None

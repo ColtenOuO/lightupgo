@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 
 from app.api.v1 import (
+    announcements,
     auth,
     blog,
     cards,
@@ -19,4 +20,5 @@ api_router.include_router(courses.router, prefix="/courses", tags=["courses"])
 api_router.include_router(teachers.router, prefix="/teachers", tags=["teachers"])
 api_router.include_router(gallery.router, prefix="/gallery", tags=["gallery"])
 api_router.include_router(blog.router, prefix="/blog", tags=["blog"])
+api_router.include_router(announcements.router, prefix="/announcements", tags=["announcements"])
 api_router.include_router(upload.router, prefix="/upload", tags=["upload"])
